@@ -34,6 +34,8 @@ class HttpsViewController : UIViewController {
             FFmpegKitConfig.enableLogCallback(nil)
             FFmpegKitConfig.enableStatisticsCallback(nil)
         }
+        setupViews()
+        setupLayout()
     }
     
     override func didReceiveMemoryWarning() {
@@ -205,5 +207,21 @@ class HttpsViewController : UIViewController {
                 //                }
             }
         }
+    }
+}
+//MARK: – Views and layouts
+extension HttpsViewController {
+    private func setupViews() {
+        view.backgroundColor = .white
+        view.addSubview(header)
+    }
+    private func setupLayout() {
+        header.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            header.heightAnchor.constraint(equalToConstant: 50),
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+        ])
     }
 }

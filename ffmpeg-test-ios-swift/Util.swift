@@ -18,7 +18,7 @@ func addUIAction(_ asyncUpdateUIBlock: @escaping () -> Void) {
     }
 }
 
-class Util: NSObject {
+struct Util {
     static func applyButtonStyle(_ button: UIButton) {
         button.tintColor = .white
         button.setTitleColor(.white, for: .normal)
@@ -34,6 +34,11 @@ class Util: NSObject {
     }
     static func applyHeaderStyle(_ label: UILabel) {
         label.layer.borderWidth = 1.0
+        label.layer.backgroundColor = UIColor.orange.cgColor
+        label.textColor = .white
+        label.text = "FFmpegKit iOS"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 18, weight: .bold)
         label.layer.borderColor = UIColor(displayP3Red:231.0/256, green:76.0/256, blue:60.0/256, alpha:1.0).cgColor
         label.layer.cornerRadius = 5.0
     }

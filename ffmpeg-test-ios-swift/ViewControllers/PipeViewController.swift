@@ -43,6 +43,8 @@ class PipeViewController: UIViewController {
             self.enableLogCallback()
             self.enableStatisticsCallback()
         }
+        setupViews()
+        setupLayout()
     }
     
     override func didReceiveMemoryWarning() {
@@ -102,8 +104,7 @@ class PipeViewController: UIViewController {
         }
     }
     
-    @IBAction func createVideo(sender:AnyObject!) {
-        
+    @objc func createVideo() {
         let resourceFolder = Bundle.main.resourcePath!
         let image1 = resourceFolder.appending("/machupicchu.jpg")
         let image2 = resourceFolder.appending("/pyramid.jpg")
@@ -214,50 +215,61 @@ class PipeViewController: UIViewController {
         }
     }
     
-//    func observeValueForKeyPath(keyPath:String, ofObject object:AnyObject, change: NSDictionary, context: Void) {
-//
-//        let statusNumber: NSNumber = change[NSKeyValueObservingOptions.new]
-//        var status: Int = -1
-//
-//        if (statusNumber is NSNumber) {
-//            status = statusNumber.integerValue
-//        }
-//
-//        switch status {
-//        case AVPlayerItemStatusReadyToPlay:
-//            player.play()
-//        case AVPlayerItemStatusFailed:
-//            if activeItem != nil && activeItem.error != nil {
-//                var message: String! = activeItem.error.localizedFailureReason
-//
-//                if message == nil {
-//                    message = activeItem.error.localizedDescription
-//                }
-//
-//                Util.alert(self, withTitle: "Player Error", message: message, andButtonText: "OK")
-//            }
-//        default:
-//            NSLog("Status %ld received from player.\n", status)
-//        }
-//    }
-}
+    func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: NSDictionary, context: Void) {
 
+        let statusNumber = change[NSKeyValueObservingOptions.new]
+        var status: Int = -1
+
+        if let statusNumber = statusNumber as? NSNumber {
+            status = statusNumber.intValue
+        }
+
+        switch status {
+        case 0:
+            player.play()
+        case 1:
+            if let activeItem = activeItem,
+               let error = activeItem.error {
+                let message = error.localizedDescription
+                Util.alert(self, withTitle: "Player Error", message: message, andButtonText: "OK")
+            }
+        default:
+            NSLog("Status %ld received from player.\n", status)
+        }
+    }
+}
 //MARK: – Views and layouts
 extension PipeViewController {
     private func setupViews() {
-        view.addSubview(stackView)
-        stackView.addArrangedSubview(imageView)
-        stackView.addArrangedSubview(favoriteButton)
-        stackView.addArrangedSubview(authorLabel)
-        stackView.addArrangedSubview(locationLabel)
-        stackView.addArrangedSubview(dateLabel)
-        stackView.addArrangedSubview(downloadsLabel)
-        stackView.addArrangedSubview(dismissButton)
+        view.backgroundColor = .white
+        view.addSubview(header)
+        createButton.setTitle("Create", for: .normal)
+        createButton.addTarget(self, action: #selector(createVideo), for: .touchDown)
+        view.addSubview(createButton)
+        view.addSubview(videoPlayerFrame)
     }
     private func setupLayout() {
-        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
+        
+        header.translatesAutoresizingMaskIntoConstraints = false
+        createButton.translatesAutoresizingMaskIntoConstraints = false
+        videoPlayerFrame.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            header.heightAnchor.constraint(equalToConstant: 50),
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            createButton.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 60),
+            createButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            createButton.heightAnchor.constraint(equalToConstant: 32),
+            createButton.widthAnchor.constraint(equalToConstant: 80),
+            
+            videoPlayerFrame.topAnchor.constraint(equalTo: createButton.bottomAnchor, constant: 30),
+            videoPlayerFrame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            videoPlayerFrame.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            videoPlayerFrame.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            videoPlayerFrame.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+        ])
     }
 }

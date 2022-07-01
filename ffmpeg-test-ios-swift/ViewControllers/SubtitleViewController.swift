@@ -50,6 +50,8 @@ class SubtitleViewController: UIViewController {
             self.enableLogCallback()
             self.enableStatisticsCallback()
         }
+        setupViews()
+        setupLayout()
     }
 
     override func didReceiveMemoryWarning() {
@@ -211,5 +213,21 @@ class SubtitleViewController: UIViewController {
         self.dismiss(animated: true) {
             Util.alert(self, withTitle: "Error", message: message, andButtonText: "OK")
         }
+    }
+}
+//MARK: – Views and layouts
+extension SubtitleViewController {
+    private func setupViews() {
+        view.backgroundColor = .white
+        view.addSubview(header)
+    }
+    private func setupLayout() {
+        header.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            header.heightAnchor.constraint(equalToConstant: 50),
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+        ])
     }
 }

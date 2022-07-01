@@ -37,6 +37,8 @@ class AudioViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             self.createAudioSample()
             self.enableLogCallback()
         }
+        setupViews()
+        setupLayout()
     }
     
     override func didReceiveMemoryWarning() {
@@ -233,5 +235,19 @@ class AudioViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         }
     }
 }
-
-
+//MARK: – Views and layouts
+extension AudioViewController {
+    private func setupViews() {
+        view.backgroundColor = .white
+        view.addSubview(header)
+    }
+    private func setupLayout() {
+        header.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            header.heightAnchor.constraint(equalToConstant: 50),
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+        ])
+    }
+}

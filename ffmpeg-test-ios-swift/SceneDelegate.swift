@@ -34,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         vc7.tabBarItem = UITabBarItem(title: "PIPE", image: nil, tag: 7)
         vc8.tabBarItem = UITabBarItem(title: "CONCURRENT", image: nil, tag: 8)
         vc9.tabBarItem = UITabBarItem(title: "OTHER", image: nil, tag: 9)
-        let tabbarList = [vc1, vc2, vc3, vc4, vc5, vc6, vc6, vc8, vc9]
+        let tabbarList = [vc1, vc2, vc3, vc4, vc5, vc6, vc7, vc8, vc9]
         // SELECTED BAR ITEM
         UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor : UIColor(red:244.0/255.0, green:104.0/255.0, blue:66.0/255.0, alpha: 1.0),
                                                           .font : UIFont.boldSystemFont(ofSize: 14)], for: .selected)

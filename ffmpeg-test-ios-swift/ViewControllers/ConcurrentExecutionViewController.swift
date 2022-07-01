@@ -39,6 +39,8 @@ class ConcurrentExecutionViewController: UIViewController {
         addUIAction {
             self.enableLogCallback()
         }
+        setupViews()
+        setupLayout()
     }
     
     override func didReceiveMemoryWarning() {
@@ -144,5 +146,21 @@ class ConcurrentExecutionViewController: UIViewController {
             let bottom = NSMakeRange(self.outputText.text.count - 1, 1)
             outputText.scrollRangeToVisible(bottom)
         }
+    }
+}
+//MARK: – Views and layouts
+extension ConcurrentExecutionViewController {
+    private func setupViews() {
+        view.backgroundColor = .white
+        view.addSubview(header)
+    }
+    private func setupLayout() {
+        header.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            header.heightAnchor.constraint(equalToConstant: 50),
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+        ])
     }
 }

@@ -50,6 +50,8 @@ class VideoViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         addUIAction {
             self.setActive()
         }
+        setupViews()
+        setupLayout()
     }
 
     override func didReceiveMemoryWarning() {
@@ -298,4 +300,19 @@ class VideoViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
 //        }
 //    }
 }
-
+//MARK: – Views and layouts
+extension VideoViewController {
+    private func setupViews() {
+        view.backgroundColor = .white
+        view.addSubview(header)
+    }
+    private func setupLayout() {
+        header.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            header.heightAnchor.constraint(equalToConstant: 50),
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+        ])
+    }
+}

@@ -29,6 +29,8 @@ class CommandViewController: UIViewController {
         addUIAction {
             FFmpegKitConfig.enableLogCallback(nil)
         }
+        setupViews()
+        setupLayout()
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,5 +103,21 @@ class CommandViewController: UIViewController {
 
     func clearOutput() {
         outputText.text = ""
+    }
+}
+//MARK: – Views and layouts
+extension CommandViewController {
+    private func setupViews() {
+        view.backgroundColor = .white
+        view.addSubview(header)
+    }
+    private func setupLayout() {
+        header.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            header.heightAnchor.constraint(equalToConstant: 50),
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+        ])
     }
 }

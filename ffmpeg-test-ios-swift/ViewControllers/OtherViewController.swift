@@ -29,6 +29,8 @@ class OtherViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         Util.applyButtonStyle(runButton)
         Util.applyOutputTextStyle(outputText)
         Util.applyHeaderStyle(header)
+        setupViews()
+        setupLayout()
     }
     
     override func didReceiveMemoryWarning() {
@@ -193,5 +195,21 @@ class OtherViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     func clearOutput() {
         self.outputText.text = ""
+    }
+}
+//MARK: – Views and layouts
+extension OtherViewController {
+    private func setupViews() {
+        view.backgroundColor = .white
+        view.addSubview(header)
+    }
+    private func setupLayout() {
+        header.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            header.heightAnchor.constraint(equalToConstant: 50),
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+        ])
     }
 }
