@@ -19,8 +19,8 @@ class VidStabViewController: UIViewController {
     private var indicator = UIActivityIndicatorView()
     private var header = UILabel()
     private var stabilizeVideoButton = UIButton()
-    private var videoPlayerFrame = UILabel()
-    private var stabilizedVideoPlayerFrame = UILabel()
+    private var videoPlayerFrame = UIView()
+    private var stabilizedVideoPlayerFrame = UIView()
 
 
     override func viewDidLoad() {

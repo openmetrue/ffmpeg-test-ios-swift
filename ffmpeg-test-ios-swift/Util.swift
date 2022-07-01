@@ -48,13 +48,13 @@ struct Util {
         textView.layer.borderColor = UIColor(displayP3Red:243.0/256, green:156.0/256, blue:18.0/256, alpha:1.0).cgColor
         textView.layer.cornerRadius = 5.0
     }
-    static func applyPickerViewStyle(_ pickerView:UIPickerView!) {
+    static func applyPickerViewStyle(_ pickerView: UIPickerView) {
         pickerView.layer.backgroundColor = UIColor(displayP3Red:155.0/256, green:89.0/256, blue:182.0/256, alpha:1.0).cgColor
         pickerView.layer.borderWidth = 1.0
         pickerView.layer.borderColor = UIColor(displayP3Red:142.0/256, green:68.0/256, blue:173.0/256, alpha:1.0).cgColor
         pickerView.layer.cornerRadius = 5.0
     }
-    static func applyVideoPlayerFrameStyle(_ playerFrame:UILabel!) {
+    static func applyVideoPlayerFrameStyle(_ playerFrame: UIView) {
         playerFrame.layer.backgroundColor = UIColor(displayP3Red:236.0/256, green:240.0/256, blue:241.0/256, alpha:1.0).cgColor
         playerFrame.layer.borderWidth = 1.0
         playerFrame.layer.borderColor = UIColor(displayP3Red:185.0/256, green:195.0/256, blue:199.0/256, alpha:1.0).cgColor

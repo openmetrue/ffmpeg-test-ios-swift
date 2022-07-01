@@ -24,7 +24,7 @@ class VideoViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     private var header = UILabel()
     private var videoCodecPicker = UIPickerView()
     private var encodeButton = UIButton()
-    private var videoPlayerFrame = UILabel()
+    private var videoPlayerFrame = UIView()
 
 
     override func viewDidLoad() {

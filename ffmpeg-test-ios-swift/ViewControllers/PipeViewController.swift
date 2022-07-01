@@ -12,7 +12,6 @@ import ffmpegkit
 class PipeViewController: UIViewController {
     
     private var player = AVQueuePlayer()
-    private lazy var playerLayer = AVPlayerLayer(player: player)
     private var activeItem: AVPlayerItem? = nil
     
     private var alertController = UIAlertController()
@@ -20,7 +19,7 @@ class PipeViewController: UIViewController {
     private var statistics: Statistics? = nil
     private var header = UILabel()
     private var createButton = UIButton()
-    private var videoPlayerFrame = UILabel()
+    private var videoPlayerFrame = UIView()
     
     
     override func viewDidLoad() {
@@ -30,14 +29,13 @@ class PipeViewController: UIViewController {
         Util.applyButtonStyle(createButton)
         Util.applyVideoPlayerFrameStyle(videoPlayerFrame)
         Util.applyHeaderStyle(header)
+
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = CGRect(x: 0, y: 0, width: 374, height: 500)
+        //videoPlayerFrame.layer.bounds
+        //playerLayer.videoGravity = .resize
         
-        var rectangularFrame:CGRect = self.view.layer.bounds
-        rectangularFrame.size.width = self.view.layer.bounds.size.width - 40
-        rectangularFrame.origin.x = 20
-        rectangularFrame.origin.y = self.createButton.layer.bounds.origin.y + 120
-        
-        playerLayer.frame = rectangularFrame
-        self.view.layer.addSublayer(playerLayer)
+        videoPlayerFrame.layer.addSublayer(playerLayer)
         
         addUIAction {
             self.enableLogCallback()
@@ -162,10 +160,9 @@ class PipeViewController: UIViewController {
         
         let asset = AVAsset(url: videoURL)
         let assetKeys = ["playable", "hasProtectedContent"]
-        
         let newVideo = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys:assetKeys)
         activeItem = newVideo
-        newVideo.addObserver(self, forKeyPath: "status", options: [.old, .new], context: nil)
+        newVideo.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.old, .new], context: nil)
         player.insert(newVideo, after: nil)
     }
     
@@ -215,26 +212,23 @@ class PipeViewController: UIViewController {
         }
     }
     
-    func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: NSDictionary, context: Void) {
-
-        let statusNumber = change[NSKeyValueObservingOptions.new]
-        var status: Int = -1
-
-        if let statusNumber = statusNumber as? NSNumber {
-            status = statusNumber.intValue
-        }
-
-        switch status {
-        case 0:
-            player.play()
-        case 1:
-            if let activeItem = activeItem,
-               let error = activeItem.error {
-                let message = error.localizedDescription
-                Util.alert(self, withTitle: "Player Error", message: message, andButtonText: "OK")
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let change = change else { return }
+        
+        let statusNumber = change[.newKey]
+        if let status = statusNumber as? NSNumber {
+            switch status {
+            case 1:
+                player.play()
+            case 2:
+                if let activeItem = activeItem,
+                   let error = activeItem.error {
+                    let message = error.localizedDescription
+                    Util.alert(self, withTitle: "Player Error", message: message, andButtonText: "OK")
+                }
+            default:
+                print("Status \(status) received from player")
             }
-        default:
-            NSLog("Status %ld received from player.\n", status)
         }
     }
 }

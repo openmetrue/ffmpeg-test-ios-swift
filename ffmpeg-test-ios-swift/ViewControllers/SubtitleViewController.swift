@@ -20,7 +20,7 @@ class SubtitleViewController: UIViewController {
     private var sessionId: Int = 0
     private var header = UILabel()
     private var burnSubtitlesButton = UIButton()
-    private var videoPlayerFrame = UILabel()
+    private var videoPlayerFrame = UIView()
 
     enum State {
         case IdleState
