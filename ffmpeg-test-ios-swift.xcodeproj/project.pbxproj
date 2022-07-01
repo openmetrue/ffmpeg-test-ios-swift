@@ -24,6 +24,10 @@
 		B4AB1CE5286F16BE00E01B43 /* HttpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB1CDC286F16BE00E01B43 /* HttpsViewController.swift */; };
 		B4AB1CE6286F16BE00E01B43 /* ConcurrentExecutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB1CDD286F16BE00E01B43 /* ConcurrentExecutionViewController.swift */; };
 		B4AB1CE8286F17ED00E01B43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4AB1CE7286F17ED00E01B43 /* LaunchScreen.storyboard */; };
+		B4AB1CF1286F1BA600E01B43 /* stonehenge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B4AB1CEA286F1BA600E01B43 /* stonehenge.jpg */; };
+		B4AB1CF4286F1BA600E01B43 /* subtitle.srt in Resources */ = {isa = PBXBuildFile; fileRef = B4AB1CED286F1BA600E01B43 /* subtitle.srt */; };
+		B4AB1CF6286F1BA600E01B43 /* machupicchu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B4AB1CEF286F1BA600E01B43 /* machupicchu.jpg */; };
+		B4AB1CF7286F1BA600E01B43 /* pyramid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B4AB1CF0286F1BA600E01B43 /* pyramid.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		B4AB1CDC286F16BE00E01B43 /* HttpsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpsViewController.swift; sourceTree = "<group>"; };
 		B4AB1CDD286F16BE00E01B43 /* ConcurrentExecutionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentExecutionViewController.swift; sourceTree = "<group>"; };
 		B4AB1CE7286F17ED00E01B43 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B4AB1CEA286F1BA600E01B43 /* stonehenge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stonehenge.jpg; sourceTree = "<group>"; };
+		B4AB1CED286F1BA600E01B43 /* subtitle.srt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = subtitle.srt; sourceTree = "<group>"; };
+		B4AB1CEF286F1BA600E01B43 /* machupicchu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = machupicchu.jpg; sourceTree = "<group>"; };
+		B4AB1CF0286F1BA600E01B43 /* pyramid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pyramid.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +73,7 @@
 		B4AB1CAC286F164D00E01B43 = {
 			isa = PBXGroup;
 			children = (
+				B4AB1CE9286F1BA600E01B43 /* Resources */,
 				B4AB1CB7286F164D00E01B43 /* ffmpeg-test-ios-swift */,
 				B4AB1CB6286F164D00E01B43 /* Products */,
 				BD6D04C7FEE26BA06DB26910 /* Pods */,
@@ -110,6 +119,17 @@
 				B4AB1CDD286F16BE00E01B43 /* ConcurrentExecutionViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B4AB1CE9286F1BA600E01B43 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B4AB1CEA286F1BA600E01B43 /* stonehenge.jpg */,
+				B4AB1CED286F1BA600E01B43 /* subtitle.srt */,
+				B4AB1CEF286F1BA600E01B43 /* machupicchu.jpg */,
+				B4AB1CF0286F1BA600E01B43 /* pyramid.jpg */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		BD6D04C7FEE26BA06DB26910 /* Pods */ = {
@@ -189,7 +209,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4AB1CF6286F1BA600E01B43 /* machupicchu.jpg in Resources */,
+				B4AB1CF4286F1BA600E01B43 /* subtitle.srt in Resources */,
+				B4AB1CF7286F1BA600E01B43 /* pyramid.jpg in Resources */,
 				B4AB1CC2286F164D00E01B43 /* Assets.xcassets in Resources */,
+				B4AB1CF1286F1BA600E01B43 /* stonehenge.jpg in Resources */,
 				B4AB1CE8286F17ED00E01B43 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

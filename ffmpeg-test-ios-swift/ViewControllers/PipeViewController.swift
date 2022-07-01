@@ -241,3 +241,23 @@ class PipeViewController: UIViewController {
 //        }
 //    }
 }
+
+//MARK: – Views and layouts
+extension PipeViewController {
+    private func setupViews() {
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(favoriteButton)
+        stackView.addArrangedSubview(authorLabel)
+        stackView.addArrangedSubview(locationLabel)
+        stackView.addArrangedSubview(dateLabel)
+        stackView.addArrangedSubview(downloadsLabel)
+        stackView.addArrangedSubview(dismissButton)
+    }
+    private func setupLayout() {
+        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
+    }
+}
