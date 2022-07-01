@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8AE7888F4D4131562D7F2CBA /* Pods_ffmpeg_test_ios_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824AB7247E41B10DBE6CB261 /* Pods_ffmpeg_test_ios_swift.framework */; };
 		B4AB1CB9286F164D00E01B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB1CB8286F164D00E01B43 /* AppDelegate.swift */; };
 		B4AB1CBB286F164D00E01B43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB1CBA286F164D00E01B43 /* SceneDelegate.swift */; };
-		B4AB1CC0286F164D00E01B43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4AB1CBE286F164D00E01B43 /* Main.storyboard */; };
 		B4AB1CC2286F164D00E01B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4AB1CC1286F164D00E01B43 /* Assets.xcassets */; };
-		B4AB1CC5286F164D00E01B43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4AB1CC3286F164D00E01B43 /* LaunchScreen.storyboard */; };
 		B4AB1CD0286F167B00E01B43 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB1CCC286F167B00E01B43 /* Util.swift */; };
 		B4AB1CD1286F167B00E01B43 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB1CCD286F167B00E01B43 /* Video.swift */; };
 		B4AB1CD2286F167B00E01B43 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB1CCE286F167B00E01B43 /* Constants.swift */; };
@@ -24,15 +23,17 @@
 		B4AB1CE4286F16BE00E01B43 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB1CDB286F16BE00E01B43 /* VideoViewController.swift */; };
 		B4AB1CE5286F16BE00E01B43 /* HttpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB1CDC286F16BE00E01B43 /* HttpsViewController.swift */; };
 		B4AB1CE6286F16BE00E01B43 /* ConcurrentExecutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB1CDD286F16BE00E01B43 /* ConcurrentExecutionViewController.swift */; };
+		B4AB1CE8286F17ED00E01B43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4AB1CE7286F17ED00E01B43 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4892B44F11C7D51AC24E3579 /* Pods-ffmpeg-test-ios-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ffmpeg-test-ios-swift.release.xcconfig"; path = "Target Support Files/Pods-ffmpeg-test-ios-swift/Pods-ffmpeg-test-ios-swift.release.xcconfig"; sourceTree = "<group>"; };
+		824AB7247E41B10DBE6CB261 /* Pods_ffmpeg_test_ios_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ffmpeg_test_ios_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		984F86E9090B0FDFC467BB5F /* Pods-ffmpeg-test-ios-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ffmpeg-test-ios-swift.debug.xcconfig"; path = "Target Support Files/Pods-ffmpeg-test-ios-swift/Pods-ffmpeg-test-ios-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		B4AB1CB5286F164D00E01B43 /* ffmpeg-test-ios-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ffmpeg-test-ios-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4AB1CB8286F164D00E01B43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4AB1CBA286F164D00E01B43 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B4AB1CBF286F164D00E01B43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B4AB1CC1286F164D00E01B43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B4AB1CC4286F164D00E01B43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4AB1CC6286F164D00E01B43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4AB1CCC286F167B00E01B43 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		B4AB1CCD286F167B00E01B43 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -46,6 +47,7 @@
 		B4AB1CDB286F16BE00E01B43 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		B4AB1CDC286F16BE00E01B43 /* HttpsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpsViewController.swift; sourceTree = "<group>"; };
 		B4AB1CDD286F16BE00E01B43 /* ConcurrentExecutionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentExecutionViewController.swift; sourceTree = "<group>"; };
+		B4AB1CE7286F17ED00E01B43 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AE7888F4D4131562D7F2CBA /* Pods_ffmpeg_test_ios_swift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +67,8 @@
 			children = (
 				B4AB1CB7286F164D00E01B43 /* ffmpeg-test-ios-swift */,
 				B4AB1CB6286F164D00E01B43 /* Products */,
+				BD6D04C7FEE26BA06DB26910 /* Pods */,
+				D30A41D04672B53999D40224 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,9 +89,8 @@
 				B4AB1CCE286F167B00E01B43 /* Constants.swift */,
 				B4AB1CCC286F167B00E01B43 /* Util.swift */,
 				B4AB1CCD286F167B00E01B43 /* Video.swift */,
-				B4AB1CBE286F164D00E01B43 /* Main.storyboard */,
 				B4AB1CC1286F164D00E01B43 /* Assets.xcassets */,
-				B4AB1CC3286F164D00E01B43 /* LaunchScreen.storyboard */,
+				B4AB1CE7286F17ED00E01B43 /* LaunchScreen.storyboard */,
 				B4AB1CC6286F164D00E01B43 /* Info.plist */,
 			);
 			path = "ffmpeg-test-ios-swift";
@@ -108,6 +112,23 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		BD6D04C7FEE26BA06DB26910 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				984F86E9090B0FDFC467BB5F /* Pods-ffmpeg-test-ios-swift.debug.xcconfig */,
+				4892B44F11C7D51AC24E3579 /* Pods-ffmpeg-test-ios-swift.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D30A41D04672B53999D40224 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				824AB7247E41B10DBE6CB261 /* Pods_ffmpeg_test_ios_swift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -115,9 +136,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4AB1CC9286F164D00E01B43 /* Build configuration list for PBXNativeTarget "ffmpeg-test-ios-swift" */;
 			buildPhases = (
+				9C99AD4EF4E1F33D9BACC5D0 /* [CP] Check Pods Manifest.lock */,
 				B4AB1CB1286F164D00E01B43 /* Sources */,
 				B4AB1CB2286F164D00E01B43 /* Frameworks */,
 				B4AB1CB3286F164D00E01B43 /* Resources */,
+				5F97C602699DCF044811B988 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -166,13 +189,54 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4AB1CC5286F164D00E01B43 /* LaunchScreen.storyboard in Resources */,
 				B4AB1CC2286F164D00E01B43 /* Assets.xcassets in Resources */,
-				B4AB1CC0286F164D00E01B43 /* Main.storyboard in Resources */,
+				B4AB1CE8286F17ED00E01B43 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5F97C602699DCF044811B988 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ffmpeg-test-ios-swift/Pods-ffmpeg-test-ios-swift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ffmpeg-test-ios-swift/Pods-ffmpeg-test-ios-swift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ffmpeg-test-ios-swift/Pods-ffmpeg-test-ios-swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C99AD4EF4E1F33D9BACC5D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ffmpeg-test-ios-swift-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B4AB1CB1286F164D00E01B43 /* Sources */ = {
@@ -197,25 +261,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		B4AB1CBE286F164D00E01B43 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B4AB1CBF286F164D00E01B43 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B4AB1CC3286F164D00E01B43 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B4AB1CC4286F164D00E01B43 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B4AB1CC7286F164D00E01B43 /* Debug */ = {
@@ -334,6 +379,7 @@
 		};
 		B4AB1CCA286F164D00E01B43 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 984F86E9090B0FDFC467BB5F /* Pods-ffmpeg-test-ios-swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -344,9 +390,10 @@
 				INFOPLIST_FILE = "ffmpeg-test-ios-swift/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -362,6 +409,7 @@
 		};
 		B4AB1CCB286F164D00E01B43 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4892B44F11C7D51AC24E3579 /* Pods-ffmpeg-test-ios-swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -372,9 +420,10 @@
 				INFOPLIST_FILE = "ffmpeg-test-ios-swift/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
