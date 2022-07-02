@@ -15,15 +15,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let vc1 = UINavigationController(rootViewController: CommandViewController())
-        let vc2 = UINavigationController(rootViewController: VideoViewController())
-        let vc3 = UINavigationController(rootViewController: HttpsViewController())
-        let vc4 = UINavigationController(rootViewController: AudioViewController())
-        let vc5 = UINavigationController(rootViewController: SubtitleViewController())
-        let vc6 = UINavigationController(rootViewController: VidStabViewController())
-        let vc7 = UINavigationController(rootViewController: PipeViewController())
-        let vc8 = UINavigationController(rootViewController: ConcurrentExecutionViewController())
-        let vc9 = UINavigationController(rootViewController: OtherViewController())
+        let vc1 = CommandViewController()
+        let vc2 = VideoViewController()
+        let vc3 = HttpsViewController()
+        let vc4 = AudioViewController()
+        let vc5 = SubtitleViewController()
+        let vc6 = VidStabViewController()
+        let vc7 = PipeViewController()
+        let vc8 = ConcurrentExecutionViewController()
+        let vc9 = OtherViewController()
         
         vc1.tabBarItem = UITabBarItem(title: "COMMAND", image: nil, tag: 1)
         vc2.tabBarItem = UITabBarItem(title: "VIDEO", image: nil, tag: 2)

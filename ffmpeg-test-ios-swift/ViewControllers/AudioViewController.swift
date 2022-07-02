@@ -32,8 +32,8 @@ class AudioViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         createAudioSample()
         
         addUIAction {
-            self.disableStatisticsCallback()
-            self.disableLogCallback()
+            FFmpegKitConfig.enableLogCallback(nil)
+            FFmpegKitConfig.enableStatisticsCallback(nil)
             self.createAudioSample()
             self.enableLogCallback()
         }
@@ -53,10 +53,6 @@ class AudioViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             }
         }
     }
-    
-    func disableLogCallback() { FFmpegKitConfig.enableLogCallback(nil) }
-    func disableStatisticsCallback() { FFmpegKitConfig.enableStatisticsCallback(nil) }
-    
     //The number of columns of data
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -74,7 +70,7 @@ class AudioViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         selectedCodec = row
     }
     
-    @IBAction func encodeAudio(sender:AnyObject!) {
+    @objc func encodeAudio() {
         let audioOutputFile = getAudioOutputFilePath()
         do {
             try FileManager.default.removeItem(atPath: audioOutputFile)
@@ -103,7 +99,6 @@ class AudioViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
                     self.hideProgressDialogAndAlert(title: "Error", and: "Encode failed. Please check logs for the details.")
                 }
             }
-            
         }
     }
     
@@ -240,14 +235,38 @@ extension AudioViewController {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(header)
+        view.addSubview(audioCodecPicker)
+        encodeButton.setTitle("Encode", for: .normal)
+        encodeButton.addTarget(self, action: #selector(encodeAudio), for: .touchDown)
+        view.addSubview(encodeButton)
+        outputText.isEditable = false
+        view.addSubview(outputText)
     }
     private func setupLayout() {
         header.translatesAutoresizingMaskIntoConstraints = false
+        audioCodecPicker.translatesAutoresizingMaskIntoConstraints = false
+        encodeButton.translatesAutoresizingMaskIntoConstraints = false
+        outputText.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             header.heightAnchor.constraint(equalToConstant: 50),
-            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            audioCodecPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            audioCodecPicker.widthAnchor.constraint(equalToConstant: 260),
+            audioCodecPicker.heightAnchor.constraint(equalToConstant: 100),
+            audioCodecPicker.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 20),
+            
+            encodeButton.topAnchor.constraint(equalTo: audioCodecPicker.bottomAnchor, constant: 20),
+            encodeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            encodeButton.heightAnchor.constraint(equalToConstant: 32),
+            encodeButton.widthAnchor.constraint(equalToConstant: 80),
+            
+            outputText.topAnchor.constraint(equalTo: encodeButton.bottomAnchor, constant: 70),
+            outputText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            outputText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            outputText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }

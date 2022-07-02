@@ -255,7 +255,6 @@ extension PipeViewController {
             createButton.widthAnchor.constraint(equalToConstant: 80),
             
             videoPlayerFrame.topAnchor.constraint(equalTo: createButton.bottomAnchor, constant: 30),
-            videoPlayerFrame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             videoPlayerFrame.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             videoPlayerFrame.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             videoPlayerFrame.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
