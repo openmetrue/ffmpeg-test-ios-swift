@@ -15,7 +15,6 @@ class VideoViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     private var selectedCodec: Int = 0
     
     private var player = AVQueuePlayer()
-    private lazy var playerLayer = AVPlayerLayer(player: player)
     private var activeItem: AVPlayerItem? = nil
     
     private var alertController = UIAlertController()
@@ -26,34 +25,28 @@ class VideoViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     private var encodeButton = UIButton()
     private var videoPlayerFrame = UIView()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.videoCodecPicker.dataSource = self
         self.videoCodecPicker.delegate = self
-
         // STYLE UPDATE
         Util.applyButtonStyle(encodeButton)
         Util.applyPickerViewStyle(videoCodecPicker)
         Util.applyVideoPlayerFrameStyle(videoPlayerFrame)
         Util.applyHeaderStyle(header)
-
-        var rectangularFrame:CGRect = self.view.layer.bounds
-        rectangularFrame.size.width = self.view.layer.bounds.size.width - 40
-        rectangularFrame.origin.x = 20
-        rectangularFrame.origin.y = self.encodeButton.layer.bounds.origin.y + 120
-
-        playerLayer.frame = rectangularFrame
-        self.view.layer.addSublayer(playerLayer)
-
         addUIAction {
             self.setActive()
         }
         setupViews()
         setupLayout()
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = videoPlayerFrame.layer.bounds
+        videoPlayerFrame.layer.addSublayer(playerLayer)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -84,7 +77,7 @@ class VideoViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         selectedCodec = row
     }
 
-    @IBAction func encodeVideo(sender:AnyObject!) {
+    @objc func encodeVideo() {
         let resourceFolder = Bundle.main.resourcePath!
         let image1 = resourceFolder.appending("/machupicchu.jpg")
         let image2 = resourceFolder.appending("/pyramid.jpg")
@@ -144,7 +137,7 @@ class VideoViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         let assetKeys = ["playable", "hasProtectedContent"]
         let newVideo = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys:assetKeys)
         activeItem = newVideo
-        newVideo.addObserver(self, forKeyPath: "status", options: [.new, .old], context:nil)
+        newVideo.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.old, .new], context: nil)
         player.insert(newVideo, after: nil)
     }
 
@@ -272,47 +265,61 @@ class VideoViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         }
     }
 
-//    func observeValueForKeyPath(keyPath:String!, ofObject object:AnyObject!, change:NSDictionary!, context:Void!) {
-//
-//        let statusNumber:NSNumber! = change[NSKeyValueChangeNewKey]
-//        var status:Int = -1
-//        if (statusNumber is NSNumber) {
-//            status = statusNumber.integerValue
-//        }
-//
-//        switch (status) {
-//            case AVPlayerItemStatusReadyToPlay:
-//                player.play()
-//             break
-//            case AVPlayerItemStatusFailed:
-//                if activeItem != nil && activeItem.error != nil {
-//
-//                    var message:String! = activeItem.error.localizedFailureReason
-//                    if message == nil {
-//                        message = activeItem.error.localizedDescription
-//                    }
-//
-//                    Util.alert(self, withTitle:"Player Error", message:message, andButtonText:"OK")
-//                }
-//             break
-//            default:
-//            print("Status %ld received from player.\n", status)
-//        }
-//    }
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let change = change else { return }
+        let statusNumber = change[.newKey]
+        if let status = statusNumber as? NSNumber {
+            switch status {
+            case 1:
+                player.play()
+            case 2:
+                if let activeItem = activeItem,
+                   let error = activeItem.error {
+                    let message = error.localizedDescription
+                    Util.alert(self, withTitle: "Player Error", message: message, andButtonText: "OK")
+                }
+            default:
+                print("Status \(status) received from player")
+            }
+        }
+    }
 }
 //MARK: – Views and layouts
 extension VideoViewController {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(header)
+        encodeButton.setTitle("ENCODE", for: .normal)
+        encodeButton.addTarget(self, action: #selector(encodeVideo), for: .touchDown)
+        view.addSubview(encodeButton)
+        view.addSubview(videoCodecPicker)
+        view.addSubview(videoPlayerFrame)
     }
     private func setupLayout() {
         header.translatesAutoresizingMaskIntoConstraints = false
+        videoCodecPicker.translatesAutoresizingMaskIntoConstraints = false
+        encodeButton.translatesAutoresizingMaskIntoConstraints = false
+        videoPlayerFrame.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             header.heightAnchor.constraint(equalToConstant: 50),
-            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            videoCodecPicker.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 40),
+            videoCodecPicker.widthAnchor.constraint(equalToConstant: 200),
+            videoCodecPicker.heightAnchor.constraint(equalToConstant: 100),
+            videoCodecPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            encodeButton.topAnchor.constraint(equalTo: videoCodecPicker.bottomAnchor, constant: 40),
+            encodeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            encodeButton.heightAnchor.constraint(equalToConstant: 32),
+            encodeButton.widthAnchor.constraint(equalToConstant: 80),
+            
+            videoPlayerFrame.topAnchor.constraint(equalTo: encodeButton.bottomAnchor, constant: 30),
+            videoPlayerFrame.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            videoPlayerFrame.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            videoPlayerFrame.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }
