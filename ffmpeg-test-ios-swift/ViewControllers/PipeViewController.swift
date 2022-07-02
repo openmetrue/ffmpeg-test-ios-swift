@@ -21,21 +21,12 @@ class PipeViewController: UIViewController {
     private var createButton = UIButton()
     private var videoPlayerFrame = UIView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // STYLE UPDATE
         Util.applyButtonStyle(createButton)
         Util.applyVideoPlayerFrameStyle(videoPlayerFrame)
         Util.applyHeaderStyle(header)
-
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = CGRect(x: 0, y: 0, width: 374, height: 500)
-        //videoPlayerFrame.layer.bounds
-        //playerLayer.videoGravity = .resize
-        
-        videoPlayerFrame.layer.addSublayer(playerLayer)
         
         addUIAction {
             self.enableLogCallback()
@@ -45,9 +36,16 @@ class PipeViewController: UIViewController {
         setupLayout()
     }
     
+    override func viewDidLayoutSubviews() {
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = videoPlayerFrame.layer.bounds
+        videoPlayerFrame.layer.addSublayer(playerLayer)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     func enableLogCallback() {
         FFmpegKitConfig.enableLogCallback { log in
             guard let log = log else { return }
@@ -113,10 +111,9 @@ class PipeViewController: UIViewController {
         let pipe2 = FFmpegKitConfig.registerNewFFmpegPipe()
         let pipe3 = FFmpegKitConfig.registerNewFFmpegPipe()
         
-        //if player != nil {
         player.removeAllItems()
         activeItem = nil
-        //}
+        
         do {
             try FileManager.default.removeItem(atPath: videoFile)
         } catch let error {
@@ -214,7 +211,6 @@ class PipeViewController: UIViewController {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let change = change else { return }
-        
         let statusNumber = change[.newKey]
         if let status = statusNumber as? NSNumber {
             switch status {
@@ -243,7 +239,6 @@ extension PipeViewController {
         view.addSubview(videoPlayerFrame)
     }
     private func setupLayout() {
-        
         header.translatesAutoresizingMaskIntoConstraints = false
         createButton.translatesAutoresizingMaskIntoConstraints = false
         videoPlayerFrame.translatesAutoresizingMaskIntoConstraints = false
