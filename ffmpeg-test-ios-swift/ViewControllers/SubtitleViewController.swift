@@ -30,12 +30,10 @@ class SubtitleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // STYLE UPDATE
         Util.applyButtonStyle(burnSubtitlesButton)
         Util.applyVideoPlayerFrameStyle(videoPlayerFrame)
         Util.applyHeaderStyle(header)
-
         addUIAction {
             self.enableLogCallback()
             self.enableStatisticsCallback()
@@ -53,6 +51,7 @@ class SubtitleViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     func enableLogCallback() {
         FFmpegKitConfig.enableLogCallback { log in
             guard let log = log else { return }
@@ -123,7 +122,6 @@ class SubtitleViewController: UIViewController {
                 }
             }
         }.getId()
-
         print("Async FFmpeg process started with sessionId %ld.\n", sessionId)
     }
     func playVideo() {

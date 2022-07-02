@@ -17,7 +17,6 @@ class OtherViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     private var runButton = UIButton()
     private var outputText = UITextView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

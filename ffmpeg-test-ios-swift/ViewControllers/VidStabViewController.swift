@@ -12,9 +12,7 @@ import ffmpegkit
 class VidStabViewController: UIViewController {
     
     private var player = AVQueuePlayer()
-    private lazy var playerLayer = AVPlayerLayer(player: player)
     private var stabilizedVideoPlayer = AVQueuePlayer()
-    private lazy var stabilizedVideoPlayerLayer = AVPlayerLayer(player: stabilizedVideoPlayer)
     
     private var indicator = UIActivityIndicatorView()
     private var header = UILabel()
@@ -25,36 +23,11 @@ class VidStabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // STYLE UPDATE
         Util.applyButtonStyle(stabilizeVideoButton)
         Util.applyVideoPlayerFrameStyle(videoPlayerFrame)
         Util.applyVideoPlayerFrameStyle(stabilizedVideoPlayerFrame)
         Util.applyHeaderStyle(header)
-
-        // SETTING VIDEO FRAME POSITIONS, RANDOMLY (?)
-        self.stabilizedVideoPlayerFrame.frame = CGRect(x: 20, y: 20, width: self.view.bounds.size.width - 40, height: self.view.bounds.size.height/4)
-
-        var upperRectangularFrame:CGRect = self.view.bounds
-        upperRectangularFrame.size.width = self.stabilizedVideoPlayerFrame.bounds.size.width
-        upperRectangularFrame.size.height = self.stabilizedVideoPlayerFrame.bounds.size.height - 4
-        upperRectangularFrame.origin.x = 0
-        upperRectangularFrame.origin.y = self.view.bounds.size.height/100 - 4
-
-        playerLayer.frame = upperRectangularFrame
-        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
-        self.videoPlayerFrame.layer.addSublayer(playerLayer)
-
-        var lowerRectangularFrame:CGRect = self.view.bounds
-        lowerRectangularFrame.size.width = self.stabilizedVideoPlayerFrame.bounds.size.width
-        lowerRectangularFrame.size.height = self.stabilizedVideoPlayerFrame.bounds.size.height + 4
-        lowerRectangularFrame.origin.x = 0
-        lowerRectangularFrame.origin.y = self.view.bounds.size.height/50 - 4
-
-        stabilizedVideoPlayerLayer.frame = lowerRectangularFrame
-        stabilizedVideoPlayerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
-        self.stabilizedVideoPlayerFrame.layer.addSublayer(stabilizedVideoPlayerLayer)
-
         addUIAction {
             FFmpegKitConfig.enableLogCallback { log in
                 if let log = log,
@@ -66,13 +39,22 @@ class VidStabViewController: UIViewController {
         setupViews()
         setupLayout()
     }
+    
+    override func viewDidLayoutSubviews() {
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = videoPlayerFrame.layer.bounds
+        videoPlayerFrame.layer.addSublayer(playerLayer)
+        
+        let stabilizedVideoPlayerLayer = AVPlayerLayer(player: stabilizedVideoPlayer)
+        stabilizedVideoPlayerLayer.frame = stabilizedVideoPlayerFrame.layer.bounds
+        stabilizedVideoPlayerFrame.layer.addSublayer(stabilizedVideoPlayerLayer)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func stabilizedVideo(sender:AnyObject!) {
-        
+    @objc func stabilizedVideo() {
         let resourceFolder = Bundle.main.resourcePath!
         let image1 = resourceFolder.appending("/machupicchu.jpg")
         let image2 = resourceFolder.appending("/pyramid.jpg")
@@ -220,14 +202,37 @@ extension VidStabViewController {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(header)
+        stabilizeVideoButton.setTitle("STABILIZE VIDEO", for: .normal)
+        stabilizeVideoButton.addTarget(self, action: #selector(stabilizedVideo), for: .touchDown)
+        view.addSubview(stabilizeVideoButton)
+        view.addSubview(videoPlayerFrame)
+        view.addSubview(stabilizedVideoPlayerFrame)
     }
     private func setupLayout() {
         header.translatesAutoresizingMaskIntoConstraints = false
+        videoPlayerFrame.translatesAutoresizingMaskIntoConstraints = false
+        stabilizeVideoButton.translatesAutoresizingMaskIntoConstraints = false
+        stabilizedVideoPlayerFrame.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             header.heightAnchor.constraint(equalToConstant: 50),
-            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            videoPlayerFrame.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 20),
+            videoPlayerFrame.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            videoPlayerFrame.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            videoPlayerFrame.bottomAnchor.constraint(equalTo: stabilizeVideoButton.topAnchor, constant: -20),
+            
+            stabilizeVideoButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 30),
+            stabilizeVideoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stabilizeVideoButton.heightAnchor.constraint(equalToConstant: 32),
+            stabilizeVideoButton.widthAnchor.constraint(equalToConstant: 180),
+            
+            stabilizedVideoPlayerFrame.topAnchor.constraint(equalTo: stabilizeVideoButton.bottomAnchor, constant: 20),
+            stabilizedVideoPlayerFrame.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            stabilizedVideoPlayerFrame.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stabilizedVideoPlayerFrame.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }

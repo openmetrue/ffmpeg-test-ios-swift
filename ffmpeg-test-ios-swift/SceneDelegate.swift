@@ -38,15 +38,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // SELECTED BAR ITEM
         UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor : UIColor(red:244.0/255.0, green:104.0/255.0, blue:66.0/255.0, alpha: 1.0),
                                                           .font : UIFont.boldSystemFont(ofSize: 14)], for: .selected)
-        // NOT SELECTED BAR ITEMS
-        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor : UIColor(red:189.0/255.0, green:195.0/255.0, blue:199.0/255.0, alpha: 1.0),
-                                                          .font : UIFont.boldSystemFont(ofSize: 12)], for: .normal)
-        
         let tabbarcontroller = UITabBarController()
         tabbarcontroller.selectedIndex = 0
+        tabbarcontroller.tabBar.backgroundColor = .black
+        tabbarcontroller.tabBar.unselectedItemTintColor = UIColor(red:189.0/255.0, green:195.0/255.0, blue:199.0/255.0, alpha: 1.0)
         tabbarcontroller.viewControllers = tabbarList
         
         window = UIWindow(windowScene: windowScene)
+        window?.overrideUserInterfaceStyle = .light
         window?.rootViewController = tabbarcontroller
         window?.makeKeyAndVisible()
     }

@@ -6,5 +6,5 @@ target 'ffmpeg-test-ios-swift' do
   use_frameworks!
 
   # Pods for ffmpeg-test-ios-swift
-pod 'ffmpeg-kit-ios-full', '4.5.1.LTS'
+pod 'ffmpeg-kit-ios-full-gpl', '4.5.1'
 end
