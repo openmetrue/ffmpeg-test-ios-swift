@@ -63,7 +63,7 @@ class OtherViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         selectedTest = row
     }
     
-    @IBAction func runTest(sender:AnyObject!) {
+    @objc func runTest() {
         self.clearOutput()
         switch selectedTest {
         case 0:
@@ -202,14 +202,38 @@ extension OtherViewController {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(header)
+        view.addSubview(otherTestPicker)
+        runButton.setTitle("RUN", for: .normal)
+        runButton.addTarget(self, action: #selector(runTest), for: .touchDown)
+        view.addSubview(runButton)
+        outputText.isEditable = false
+        view.addSubview(outputText)
     }
     private func setupLayout() {
         header.translatesAutoresizingMaskIntoConstraints = false
+        otherTestPicker.translatesAutoresizingMaskIntoConstraints = false
+        runButton.translatesAutoresizingMaskIntoConstraints = false
+        outputText.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             header.heightAnchor.constraint(equalToConstant: 50),
-            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            otherTestPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            otherTestPicker.widthAnchor.constraint(equalToConstant: 260),
+            otherTestPicker.heightAnchor.constraint(equalToConstant: 100),
+            otherTestPicker.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 20),
+            
+            runButton.topAnchor.constraint(equalTo: otherTestPicker.bottomAnchor, constant: 20),
+            runButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            runButton.heightAnchor.constraint(equalToConstant: 32),
+            runButton.widthAnchor.constraint(equalToConstant: 80),
+            
+            outputText.topAnchor.constraint(equalTo: runButton.bottomAnchor, constant: 70),
+            outputText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            outputText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            outputText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }

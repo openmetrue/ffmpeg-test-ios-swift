@@ -236,7 +236,7 @@ extension AudioViewController {
         view.backgroundColor = .white
         view.addSubview(header)
         view.addSubview(audioCodecPicker)
-        encodeButton.setTitle("Encode", for: .normal)
+        encodeButton.setTitle("ENCODE", for: .normal)
         encodeButton.addTarget(self, action: #selector(encodeAudio), for: .touchDown)
         view.addSubview(encodeButton)
         outputText.isEditable = false

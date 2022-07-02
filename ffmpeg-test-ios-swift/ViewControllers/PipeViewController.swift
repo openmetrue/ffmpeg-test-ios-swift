@@ -233,7 +233,7 @@ extension PipeViewController {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(header)
-        createButton.setTitle("Create", for: .normal)
+        createButton.setTitle("CREATE", for: .normal)
         createButton.addTarget(self, action: #selector(createVideo), for: .touchDown)
         view.addSubview(createButton)
         view.addSubview(videoPlayerFrame)
