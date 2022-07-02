@@ -21,6 +21,7 @@ class HttpsViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         // STYLE UPDATE
         Util.applyEditTextStyle(urlText)
         Util.applyButtonStyle(getInfoFromUrlButton)
@@ -42,24 +43,23 @@ class HttpsViewController : UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func runGetInfoFromUrl(sender:AnyObject!) {
+    @objc func runGetInfoFromUrl() {
         self.runGetMediaInformation(1)
     }
-    
-    @IBAction func runGetRandomInfo1(sender:AnyObject!) {
+        
+    @objc func runGetRandomInfo1() {
         self.runGetMediaInformation(2)
     }
-    
-    @IBAction func runGetRandomInfo2(sender:AnyObject!) {
+        
+    @objc func runGetRandomInfo2() {
         self.runGetMediaInformation(3)
     }
-    
-    @IBAction func runGetInfoAndFail(sender:AnyObject!) {
+        
+    @objc func runGetInfoAndFail() {
         self.runGetMediaInformation(4)
     }
     
     func runGetMediaInformation(_ buttonNumber: Int) {
-        
         // SELECT TEST URL
         var testUrl = ""
         switch (buttonNumber) {
@@ -142,69 +142,6 @@ class HttpsViewController : UIViewController {
                         self.appendOutput("Tag: \(key):\(value)\n")
                     }
                 }
-                
-                //                guard let streams = information.getStreams() else { return }
-                //                for stream in streams {
-                //                    self.appendOutput(message: String(format: "Stream index: %@\n", stream.getIndex()))
-                //                    self.appendOutput(message: String(format: "Stream type: %@\n", stream.getType()))
-                //                    self.appendOutput(message: String(format: "Stream codec: %@\n", stream.getCodec()))
-                //                    self.appendOutput(message: String(format: "Stream codec long: %@\n", stream.getCodecLong()))
-                //                    self.appendOutput(message: String(format: "Stream format: %@\n", stream.getFormat()))
-                //                    self.appendOutput(message: String(format: "Stream width: %@\n", stream.getWidth()))
-                //                    self.appendOutput(message: String(format: "Stream height: %@\n", stream.getHeight()))
-                //                    self.appendOutput(message: String(format: "Stream bitrate: %@\n", stream.getBitrate()))
-                //                    self.appendOutput(message: String(format: "Stream sample rate: %@\n", stream.getSampleRate()))
-                //                    self.appendOutput(message: String(format: "Stream sample format: %@\n", stream.getSampleFormat()))
-                //                    self.appendOutput(message: String(format: "Stream channel layout: %@\n", stream.getChannelLayout()))
-                //                    self.appendOutput(message: String(format: "Stream sample aspect ratio: %@\n", stream.getSampleAspectRatio()))
-                //                    self.appendOutput(message: String(format: "Stream display ascpect ratio: %@\n", stream.getDisplayAspectRatio()))
-                //                    self.appendOutput(message: String(format: "Stream average frame rate: %@\n", stream.getAverageFrameRate()))
-                //                    self.appendOutput(message: String(format: "Stream real frame rate: %@\n", stream.getRealFrameRate()))
-                //                    self.appendOutput(message: String(format: "Stream time base: %@\n", stream.getTimeBase()))
-                //                    self.appendOutput(message: String(format: "Stream codec time base: %@\n", stream.getCodecTimeBase()))
-                //
-                //                    if let tags = stream.getTags() {
-                //                        for (key, value) in tags.enumerated() {
-                //                            self.appendOutput(message: "Stream tag: \(key):\(value)\n")
-                //                        }
-                //                    }
-                //                }
-                //}
-                
-                //                guard let chaptets = information.getChapters() else { return }
-                //                for chapter in chaptets {
-                //                    if chapter.getId() != nil {
-                //                        self.appendOutput(String(format: "Chapter id: %@\n", chapter.getId()))
-                //                    }
-                //
-                //                    if chapter.getTimeBase() != nil {
-                //                        self.appendOutput(String(format: "Chapter time base: %@\n", chapter.getTimeBase()))
-                //                    }
-                //
-                //                    if chapter.getStart() != nil {
-                //                        self.appendOutput(String(format: "Chapter start: %@\n", chapter.getStart()))
-                //                    }
-                //
-                //                    if chapter.getStartTime() != nil {
-                //                        self.appendOutput(String(format: "Chapter start time: %@\n", chapter.getStartTime()))
-                //                    }
-                //
-                //                    if chapter.getEnd() != nil {
-                //                        self.appendOutput(String(format: "Chapter end: %@\n", chapter.getEnd()))
-                //                    }
-                //
-                //                    if chapter.getEndTime() != nil {
-                //                        self.appendOutput(String(format: "Chapter end time: %@\n", chapter.getEndTime()))
-                //                    }
-                //
-                //                    if chapter.getTags() != nil {
-                //                        let tags: NSDictionary! = chapter.getTags()
-                //
-                //                        for key in tags.allKeys {
-                //                            self.appendOutput(String(format: "Chapter tag: %@:%@\n", key, tags.objectForKey(key)))
-                //                        }
-                //                    }
-                //                }
             }
         }
     }
@@ -212,16 +149,66 @@ class HttpsViewController : UIViewController {
 //MARK: – Views and layouts
 extension HttpsViewController {
     private func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(header)
+        view.addSubview(urlText)
+        view.addSubview(getInfoFromUrlButton)
+        getInfoFromUrlButton.setTitle("GET INFO FROM URL", for: .normal)
+        getInfoFromUrlButton.addTarget(self, action: #selector(runGetInfoFromUrl), for: .touchDown)
+        view.addSubview(getRandomInfoButton1)
+        getRandomInfoButton1.setTitle("GET RANDOM INFO", for: .normal)
+        getRandomInfoButton1.addTarget(self, action: #selector(runGetRandomInfo1), for: .touchDown)
+        view.addSubview(getRandomInfoButton2)
+        getRandomInfoButton2.setTitle("GET RANDOM INFO", for: .normal)
+        getRandomInfoButton2.addTarget(self, action: #selector(runGetRandomInfo2), for: .touchDown)
+        view.addSubview(getInfoAndFailButton)
+        getInfoAndFailButton.setTitle("GET INFO AND FAIL", for: .normal)
+        getInfoAndFailButton.addTarget(self, action: #selector(runGetInfoAndFail), for: .touchDown)
+        view.addSubview(outputText)
     }
     private func setupLayout() {
         header.translatesAutoresizingMaskIntoConstraints = false
+        urlText.translatesAutoresizingMaskIntoConstraints = false
+        getInfoFromUrlButton.translatesAutoresizingMaskIntoConstraints = false
+        getRandomInfoButton1.translatesAutoresizingMaskIntoConstraints = false
+        getRandomInfoButton2.translatesAutoresizingMaskIntoConstraints = false
+        getInfoAndFailButton.translatesAutoresizingMaskIntoConstraints = false
+        outputText.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             header.heightAnchor.constraint(equalToConstant: 50),
-            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            urlText.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 30),
+            urlText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            urlText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            urlText.heightAnchor.constraint(equalToConstant: 32),
+            
+            getInfoFromUrlButton.topAnchor.constraint(equalTo: urlText.bottomAnchor, constant: 20),
+            getInfoFromUrlButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            getInfoFromUrlButton.heightAnchor.constraint(equalToConstant: 32),
+            getInfoFromUrlButton.widthAnchor.constraint(equalToConstant: 200),
+            
+            getRandomInfoButton1.topAnchor.constraint(equalTo: getInfoFromUrlButton.bottomAnchor, constant: 10),
+            getRandomInfoButton1.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            getRandomInfoButton1.heightAnchor.constraint(equalToConstant: 32),
+            getRandomInfoButton1.widthAnchor.constraint(equalToConstant: 200),
+            
+            getRandomInfoButton2.topAnchor.constraint(equalTo: getRandomInfoButton1.bottomAnchor, constant: 10),
+            getRandomInfoButton2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            getRandomInfoButton2.heightAnchor.constraint(equalToConstant: 32),
+            getRandomInfoButton2.widthAnchor.constraint(equalToConstant: 200),
+            
+            getInfoAndFailButton.topAnchor.constraint(equalTo: getRandomInfoButton2.bottomAnchor, constant: 10),
+            getInfoAndFailButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            getInfoAndFailButton.heightAnchor.constraint(equalToConstant: 32),
+            getInfoAndFailButton.widthAnchor.constraint(equalToConstant: 200),
+            
+            outputText.topAnchor.constraint(equalTo: getInfoAndFailButton.bottomAnchor, constant: 20),
+            outputText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            outputText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            outputText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }
+

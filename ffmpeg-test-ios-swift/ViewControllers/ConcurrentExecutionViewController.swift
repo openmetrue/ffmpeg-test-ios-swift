@@ -26,6 +26,7 @@ class ConcurrentExecutionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         // STYLE UPDATE
         Util.applyButtonStyle(encode1Button)
         Util.applyButtonStyle(encode2Button)
@@ -151,7 +152,6 @@ class ConcurrentExecutionViewController: UIViewController {
 //MARK: – Views and layouts
 extension ConcurrentExecutionViewController {
     private func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(header)
     }
     private func setupLayout() {

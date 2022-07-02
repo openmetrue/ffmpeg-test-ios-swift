@@ -19,6 +19,8 @@ class AudioViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        
         audioCodecPicker.dataSource = self
         audioCodecPicker.delegate = self
         // STYLE UPDATE
@@ -233,13 +235,11 @@ class AudioViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
 //MARK: – Views and layouts
 extension AudioViewController {
     private func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(header)
         view.addSubview(audioCodecPicker)
         encodeButton.setTitle("ENCODE", for: .normal)
         encodeButton.addTarget(self, action: #selector(encodeAudio), for: .touchDown)
         view.addSubview(encodeButton)
-        outputText.isEditable = false
         view.addSubview(outputText)
     }
     private func setupLayout() {

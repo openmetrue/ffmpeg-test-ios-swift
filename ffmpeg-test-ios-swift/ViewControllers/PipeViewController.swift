@@ -23,6 +23,7 @@ class PipeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         // STYLE UPDATE
         Util.applyButtonStyle(createButton)
         Util.applyVideoPlayerFrameStyle(videoPlayerFrame)
@@ -231,7 +232,6 @@ class PipeViewController: UIViewController {
 //MARK: – Views and layouts
 extension PipeViewController {
     private func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(header)
         createButton.setTitle("CREATE", for: .normal)
         createButton.addTarget(self, action: #selector(createVideo), for: .touchDown)

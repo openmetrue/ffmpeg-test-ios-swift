@@ -18,9 +18,9 @@ let VIDEO_TEST_TOOLTIP_DURATION: TimeInterval = 4.0
 // HTTPS TEST
 let HTTPS_TEST_DEFAULT_URL = "https://download.blender.org/peach/trailer/trailer_1080p.ogg"
 let HTTPS_TEST_FAIL_URL = "https://download2.blender.org/peach/trailer/trailer_1080p.ogg"
-let HTTPS_TEST_RANDOM_URL_1 = "https://file-examples-com.github.io/uploads/2018/04/file_example_MOV_640_800kB.mov"
-let HTTPS_TEST_RANDOM_URL_2 = "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
-let HTTPS_TEST_RANDOM_URL_3 = "https://file-examples-com.github.io/uploads/2020/03/file_example_WEBP_50kB.webp"
+let HTTPS_TEST_RANDOM_URL_1 = "https://2ch.hk/mu/src/1476379/16567018948520.mp4"
+let HTTPS_TEST_RANDOM_URL_2 = "https://2ch.hk/mu/src/1788186/16184999206080.mp3"
+let HTTPS_TEST_RANDOM_URL_3 = "https://2ch.hk/mu/src/1861915/16525324889212.webm"
 let HTTPS_TEST_TOOLTIP_TEXT = "Enter the https url of a media file and click the button"
 let HTTPS_TEST_TOOLTIP_DURATION: TimeInterval = 4.0
 

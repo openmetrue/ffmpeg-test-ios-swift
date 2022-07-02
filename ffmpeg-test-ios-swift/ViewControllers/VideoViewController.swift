@@ -27,6 +27,8 @@ class VideoViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        
         self.videoCodecPicker.dataSource = self
         self.videoCodecPicker.delegate = self
         // STYLE UPDATE
@@ -287,7 +289,6 @@ class VideoViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
 //MARK: – Views and layouts
 extension VideoViewController {
     private func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(header)
         encodeButton.setTitle("ENCODE", for: .normal)
         encodeButton.addTarget(self, action: #selector(encodeVideo), for: .touchDown)

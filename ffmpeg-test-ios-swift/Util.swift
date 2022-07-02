@@ -31,6 +31,7 @@ struct Util {
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIColor(displayP3Red:52.0/256, green:152.0/256, blue:219.0/256, alpha:1.0).cgColor
         textField.layer.cornerRadius = 5.0
+        textField.textColor = .black
     }
     static func applyHeaderStyle(_ label: UILabel) {
         label.layer.borderWidth = 1.0
@@ -47,6 +48,8 @@ struct Util {
         textView.layer.borderWidth = 1.0
         textView.layer.borderColor = UIColor(displayP3Red:243.0/256, green:156.0/256, blue:18.0/256, alpha:1.0).cgColor
         textView.layer.cornerRadius = 5.0
+        textView.isEditable = false
+        textView.textColor = .black
     }
     static func applyPickerViewStyle(_ pickerView: UIPickerView) {
         pickerView.layer.backgroundColor = UIColor(displayP3Red:155.0/256, green:89.0/256, blue:182.0/256, alpha:1.0).cgColor

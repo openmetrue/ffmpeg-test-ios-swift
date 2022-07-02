@@ -19,7 +19,7 @@ class OtherViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .white
         self.otherTestPicker.dataSource = self
         self.otherTestPicker.delegate = self
         
@@ -199,13 +199,11 @@ class OtherViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
 //MARK: – Views and layouts
 extension OtherViewController {
     private func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(header)
         view.addSubview(otherTestPicker)
         runButton.setTitle("RUN", for: .normal)
         runButton.addTarget(self, action: #selector(runTest), for: .touchDown)
         view.addSubview(runButton)
-        outputText.isEditable = false
         view.addSubview(outputText)
     }
     private func setupLayout() {

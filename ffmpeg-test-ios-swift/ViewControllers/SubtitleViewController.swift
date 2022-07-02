@@ -30,6 +30,7 @@ class SubtitleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         // STYLE UPDATE
         Util.applyButtonStyle(burnSubtitlesButton)
         Util.applyVideoPlayerFrameStyle(videoPlayerFrame)
@@ -211,7 +212,6 @@ class SubtitleViewController: UIViewController {
 //MARK: – Views and layouts
 extension SubtitleViewController {
     private func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(header)
         burnSubtitlesButton.setTitle("BURN SUBTITLES", for: .normal)
         burnSubtitlesButton.addTarget(self, action: #selector(burnSubtitles), for: .touchDown)

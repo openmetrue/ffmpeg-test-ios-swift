@@ -18,6 +18,7 @@ class CommandViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         // STYLE UPDATE
         Util.applyEditTextStyle(commandText)
         Util.applyButtonStyle(runFFmpegButton)
@@ -106,9 +107,7 @@ class CommandViewController: UIViewController {
 //MARK: – Views and layouts
 extension CommandViewController {
     private func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(header)
-        commandText.textColor = .black
         view.addSubview(commandText)
         view.addSubview(runFFmpegButton)
         runFFmpegButton.setTitle("RUN FFMPEG", for: .normal)
@@ -116,8 +115,6 @@ extension CommandViewController {
         view.addSubview(runFFprobeButton)
         runFFprobeButton.setTitle("RUN FFPROBE", for: .normal)
         runFFprobeButton.addTarget(self, action: #selector(runFFprobe), for: .touchDown)
-        outputText.isEditable = false
-        outputText.textColor = .black
         view.addSubview(outputText)
     }
     private func setupLayout() {

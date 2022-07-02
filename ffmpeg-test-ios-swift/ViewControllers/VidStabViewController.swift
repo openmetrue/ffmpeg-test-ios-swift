@@ -23,6 +23,7 @@ class VidStabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         // STYLE UPDATE
         Util.applyButtonStyle(stabilizeVideoButton)
         Util.applyVideoPlayerFrameStyle(videoPlayerFrame)
@@ -200,7 +201,6 @@ class VidStabViewController: UIViewController {
 //MARK: – Views and layouts
 extension VidStabViewController {
     private func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(header)
         stabilizeVideoButton.setTitle("STABILIZE VIDEO", for: .normal)
         stabilizeVideoButton.addTarget(self, action: #selector(stabilizedVideo), for: .touchDown)
