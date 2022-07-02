@@ -12,7 +12,6 @@ import ffmpegkit
 class SubtitleViewController: UIViewController {
     
     private var player = AVQueuePlayer()
-    private lazy var playerLayer = AVPlayerLayer(player: player)
     
     private var alertController = UIAlertController()
     private var indicator = UIActivityIndicatorView()
@@ -37,21 +36,18 @@ class SubtitleViewController: UIViewController {
         Util.applyVideoPlayerFrameStyle(videoPlayerFrame)
         Util.applyHeaderStyle(header)
 
-        var rectangularFrame:CGRect = self.view.layer.bounds
-        rectangularFrame.size.width = self.view.layer.bounds.size.width - 40
-        rectangularFrame.origin.x = 20
-        rectangularFrame.origin.y = self.burnSubtitlesButton.layer.bounds.origin.y + 80
-
-        playerLayer.frame = rectangularFrame
-        self.view.layer.addSublayer(playerLayer)
-
-
         addUIAction {
             self.enableLogCallback()
             self.enableStatisticsCallback()
         }
         setupViews()
         setupLayout()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = videoPlayerFrame.layer.bounds
+        videoPlayerFrame.layer.addSublayer(playerLayer)
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,8 +68,7 @@ class SubtitleViewController: UIViewController {
         }
     }
 
-    @IBAction func burnSubtitles(sender:AnyObject!) {
-        
+    @objc func burnSubtitles() {
         let resourceFolder = Bundle.main.resourcePath!
         let image1 = resourceFolder.appending("/machupicchu.jpg")
         let image2 = resourceFolder.appending("/pyramid.jpg")
@@ -94,9 +89,9 @@ class SubtitleViewController: UIViewController {
             guard let session = session,
                   let returnCode = session.getReturnCode() else { return }
             print("FFmpeg process exited with state \(FFmpegKitConfig.sessionState(toString: session.getState()) ?? "") and \(returnCode)")
-            addUIAction {
-                self.hideProgressDialog()
-            }
+//            addUIAction {
+//                self.hideProgressDialog()
+//            }
             if ReturnCode.isSuccess(returnCode) {
                 print("Create completed successfully; burning subtitles")
                 let burnSubtitlesCommand = String(format:"-hide_banner -y -i %@ -vf subtitles=%@:force_style='FontName=MyFontName' %@", videoFile, subtitle, videoWithSubtitlesFile)
@@ -220,14 +215,31 @@ extension SubtitleViewController {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(header)
+        burnSubtitlesButton.setTitle("BURN SUBTITLES", for: .normal)
+        burnSubtitlesButton.addTarget(self, action: #selector(burnSubtitles), for: .touchDown)
+        view.addSubview(burnSubtitlesButton)
+        view.addSubview(videoPlayerFrame)
     }
     private func setupLayout() {
         header.translatesAutoresizingMaskIntoConstraints = false
+        burnSubtitlesButton.translatesAutoresizingMaskIntoConstraints = false
+        videoPlayerFrame.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             header.heightAnchor.constraint(equalToConstant: 50),
-            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            burnSubtitlesButton.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 60),
+            burnSubtitlesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            burnSubtitlesButton.heightAnchor.constraint(equalToConstant: 32),
+            burnSubtitlesButton.widthAnchor.constraint(equalToConstant: 160),
+            
+            videoPlayerFrame.topAnchor.constraint(equalTo: burnSubtitlesButton.bottomAnchor, constant: 30),
+            videoPlayerFrame.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            videoPlayerFrame.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            videoPlayerFrame.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }
