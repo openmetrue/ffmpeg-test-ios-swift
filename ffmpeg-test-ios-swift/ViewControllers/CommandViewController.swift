@@ -37,7 +37,7 @@ class CommandViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func runFFmpeg(sender:AnyObject!) {
+    @objc func runFFmpeg() {
         clearOutput()
         commandText.endEditing(true)
         guard let text = commandText.text else { return }
@@ -64,7 +64,7 @@ class CommandViewController: UIViewController {
         } withStatisticsCallback: { _ in }
     }
 
-    @IBAction func runFFprobe(sender:AnyObject!) {
+    @objc func runFFprobe() {
         clearOutput()
         commandText.endEditing(true)
         guard let text = commandText.text else { return }
@@ -90,7 +90,7 @@ class CommandViewController: UIViewController {
         
         FFmpegKitConfig.asyncFFprobeExecute(session)
 
-        AppDelegate.listFFprobeSessions()
+        //AppDelegate.listFFprobeSessions()
     }
 
     func appendOutput(_ message: String) {
@@ -110,14 +110,48 @@ extension CommandViewController {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(header)
+        view.addSubview(commandText)
+        view.addSubview(runFFmpegButton)
+        runFFmpegButton.setTitle("RUN FFMPEG", for: .normal)
+        runFFmpegButton.addTarget(self, action: #selector(runFFmpeg), for: .touchDown)
+        view.addSubview(runFFprobeButton)
+        runFFprobeButton.setTitle("RUN FFPROBE", for: .normal)
+        runFFprobeButton.addTarget(self, action: #selector(runFFprobe), for: .touchDown)
+        outputText.isEditable = false
+        view.addSubview(outputText)
     }
     private func setupLayout() {
         header.translatesAutoresizingMaskIntoConstraints = false
+        commandText.translatesAutoresizingMaskIntoConstraints = false
+        runFFmpegButton.translatesAutoresizingMaskIntoConstraints = false
+        runFFprobeButton.translatesAutoresizingMaskIntoConstraints = false
+        outputText.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             header.heightAnchor.constraint(equalToConstant: 50),
-            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+            header.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            commandText.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 30),
+            commandText.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            commandText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            commandText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            commandText.heightAnchor.constraint(equalToConstant: 32),
+            
+            runFFmpegButton.topAnchor.constraint(equalTo: commandText.bottomAnchor, constant: 30),
+            runFFmpegButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            runFFmpegButton.heightAnchor.constraint(equalToConstant: 32),
+            runFFmpegButton.widthAnchor.constraint(equalToConstant: 130),
+            
+            runFFprobeButton.topAnchor.constraint(equalTo: runFFmpegButton.bottomAnchor, constant: 30),
+            runFFprobeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            runFFprobeButton.heightAnchor.constraint(equalToConstant: 32),
+            runFFprobeButton.widthAnchor.constraint(equalToConstant: 130),
+            
+            outputText.topAnchor.constraint(equalTo: runFFprobeButton.bottomAnchor, constant: 30),
+            outputText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            outputText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            outputText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }

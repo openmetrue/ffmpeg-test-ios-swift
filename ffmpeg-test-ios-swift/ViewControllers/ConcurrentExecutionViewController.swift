@@ -117,7 +117,7 @@ class ConcurrentExecutionViewController: UIViewController {
         default:
             sessionId3 = sessionId
         }
-        AppDelegate.listFFmpegSessions()
+        //AppDelegate.listFFmpegSessions()
     }
     
     func cancel(_ buttonNumber: Int) {
